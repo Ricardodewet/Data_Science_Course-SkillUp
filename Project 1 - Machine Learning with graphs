@@ -1,0 +1,51 @@
+# MACHINE LEARNING PROJECT 01
+
+import pandas as pd
+
+df = pd.DataFrame()
+type(df)
+df = pd.read_csv('C:\dataset\Advertising.csv', index_col = 0)
+
+
+df.head()
+df.size
+df.shape
+df.columns
+
+x_feature = df[['Newspaper', 'Radio', 'TV']]
+x_feature.head()
+x_feature.size
+x_feature.shape
+
+y_target = df[['Sales']]
+y_target.head()
+y_target.size
+y_target.shape
+
+
+
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(x_feature, y_target, random_state=1)
+
+x_train.shape
+x_test.shape
+y_train.shape
+y_test.shape
+
+
+from sklearn.linear_model import LinearRegression
+linreg = LinearRegression()
+linreg.fit(x_train, y_train)
+
+linreg.intercept_
+linreg.coef_
+
+y_pred = linreg.predict(x_test)
+y_pred
+
+
+from sklearn import metrics
+import numpy as np
+
+np.sqrt(metrics.mean_squared_error(y_test, y_pred))
+
